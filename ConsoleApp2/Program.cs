@@ -1,12 +1,10 @@
-﻿using MyListApp;
-
-namespace ConsoleApp2
+﻿namespace ConsoleApp2
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            var myList = new MyList();
+            var myList = new MyList();            
 
             var a = new int[] { 1, 2, 3, 4, 5, 6 };
 
@@ -14,9 +12,10 @@ namespace ConsoleApp2
             myList.AddList(a);
 
             //myList.RemoveRange(1, 3);
-            myList.RemoveByIndex(1);
-            myList.RemoveByIndex(1);
-            myList.RemoveByIndex(1);
+            myList.RemoveRange(new int[] { 2, 3, 1, 5 });
+            //myList.RemoveByIndex(1);
+            //myList.RemoveByIndex(1);
+            //myList.RemoveByIndex(1);
             //myList.AddList(new int[] { 11, 22, 33, 44, 55 }, false);
 
             //myList.InsertByIndex(10, 99);
@@ -27,11 +26,20 @@ namespace ConsoleApp2
         }
     }
 
+    /// <summary>
+    /// This MyList class.
+    /// </summary>
     public class MyList 
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private int[] _list;
 
-        //private LinkedList<int> _linkedList;
+        /// <summary>
+        /// 
+        /// </summary>
+        private LinkedList<int> _linkedList { get; set; }
 
         public void AddListInTheBegginig(int[] input)
         { 
@@ -155,6 +163,35 @@ namespace ConsoleApp2
             }
 
             _list[index] = value;
+        }
+
+        /// <summary>
+        /// XML Comment. Removes elements by given indexes.
+        /// </summary>
+        /// <param name="arr">Array with indexes to be removed.</param>
+        public void RemoveRange(int[] arr)
+        {
+            var newList = new int[_list.Length - arr.Length];
+            int j = 0;
+            for (var i=0; i < _list.Length; i++)
+            {
+                var flag = false;
+                foreach (var elem in arr)
+                {
+                    if (elem == i)
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+
+                if (!flag)
+                {
+                    newList[j] = _list[i];
+                    j++;
+                }
+            }
+            _list = newList;
         }
 
         public void RemoveByIndex(int index)

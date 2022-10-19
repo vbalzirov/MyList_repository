@@ -1,12 +1,8 @@
-﻿using System.Collections;
-
-namespace MyListApp
+﻿namespace MyListApp
 {
     public class LinkedListExample
     {
         private static LinkedList<int> list = new LinkedList<int>();
-
-        
 
         public static void Run()
         {
