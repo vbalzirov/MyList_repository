@@ -13,7 +13,10 @@ namespace ConsoleApp2
             //// Testing methods of MyList class
             myList.AddList(a);
 
-            myList.RemoveRange(1, 3);
+            //myList.RemoveRange(1, 3);
+            myList.RemoveByIndex(1);
+            myList.RemoveByIndex(1);
+            myList.RemoveByIndex(1);
             //myList.AddList(new int[] { 11, 22, 33, 44, 55 }, false);
 
             //myList.InsertByIndex(10, 99);
@@ -28,7 +31,7 @@ namespace ConsoleApp2
     {
         private int[] _list;
 
-        private LinkedList<int> _linkedList;
+        //private LinkedList<int> _linkedList;
 
         public void AddListInTheBegginig(int[] input)
         { 
@@ -154,6 +157,20 @@ namespace ConsoleApp2
             _list[index] = value;
         }
 
+        public void RemoveByIndex(int index)
+        {
+            if (_list == null)
+            {
+                return;
+            }
+
+            for (int i = index; i < _list.Length - 1; i++)
+            {
+                _list[i] = _list[i + 1];
+            }
+            IncreaseCapacityBy(-1);
+        }
+
         public override string ToString()
         {
             string result = "";
@@ -177,7 +194,16 @@ namespace ConsoleApp2
 
         public void RemoveRange(int index, int count)
         {
-            for (int i = index; (i <= index + count); i++)
+            // 1 2 3 4 5 6
+            // index == 1; count == 3
+            // 1 5 6
+
+            if (_list == null)
+            {
+                return;
+            }
+
+            for (int i = index; i <= index + count; i++)
             {
                 if (i + count == _list.Length)
                 {
@@ -186,8 +212,9 @@ namespace ConsoleApp2
 
                 _list[i] = _list[i + count];
             }
+            // 1 5 6
 
-            IncreaseCapacityBy(-1*count);
+            IncreaseCapacityBy(-1*3);
         }
 
         private static int GetDelta(int currentSize, int index)
