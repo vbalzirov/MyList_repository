@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp2
+﻿using MyListApp;
+
+namespace ConsoleApp2
 {
     internal class Program
     {
@@ -6,23 +8,27 @@
         {
             var myList = new MyList();
 
-            var a = new int[] { 1, 2, 3, 4 };
+            var a = new int[] { 1, 2, 3, 4, 5, 6 };
 
-            // Testing methods of MyList class
+            //// Testing methods of MyList class
             myList.AddList(a);
 
-            myList.AddList(new int[] { 11, 22, 33,44,55 }, false);
+            myList.RemoveRange(1, 3);
+            //myList.AddList(new int[] { 11, 22, 33, 44, 55 }, false);
 
-            myList.InsertByIndex(10, 99);
+            //myList.InsertByIndex(10, 99);
 
-            // See what has changed in the instance of MyClass
+            //// See what has changed in the instance of MyClass
             Console.WriteLine(myList.ToString());
+            //LinkedListExample.Run();
         }
     }
 
     public class MyList 
     {
         private int[] _list;
+
+        private LinkedList<int> _linkedList;
 
         public void AddListInTheBegginig(int[] input)
         { 
@@ -86,6 +92,7 @@
                 }
             }
         }
+        
         public void AddList(int[] array, bool insertInTheEnd)
         {
             // add array in the end
@@ -168,14 +175,19 @@
             return result;
         }
 
-        /// <summary>
-        /// Increases internal array by given number.
-        /// </summary>
-        /// <param name="increaseBy">The size internal array must be increased by.</param>
-        private void IncreaseCapacityBy(int increaseBy)
+        public void RemoveRange(int index, int count)
         {
-            // Resize array if we need to extend it's capasity.
-            Array.Resize(ref _list, _list.Length + increaseBy);
+            for (int i = index; (i <= index + count); i++)
+            {
+                if (i + count == _list.Length)
+                {
+                    break;
+                }
+
+                _list[i] = _list[i + count];
+            }
+
+            IncreaseCapacityBy(-1*count);
         }
 
         private static int GetDelta(int currentSize, int index)
@@ -189,6 +201,16 @@
             Console.WriteLine();
 
             return delta;
+        }
+
+        /// <summary>
+        /// Increases internal array by given number.
+        /// </summary>
+        /// <param name="increaseBy">The size internal array must be increased by.</param>
+        private void IncreaseCapacityBy(int increaseBy)
+        {
+            // Resize array if we need to extend it's capasity.
+            Array.Resize(ref _list, _list.Length + increaseBy);
         }
     }
 }
