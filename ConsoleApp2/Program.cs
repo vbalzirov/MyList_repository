@@ -12,9 +12,6 @@
             myList.AddList(a);
 
             myList.RemoveRange(new int[] { 2, 3, 1, 5 });
-            //myList.RemoveByIndex(1);
-            //myList.RemoveByIndex(1);
-            //myList.RemoveByIndex(1);
             //myList.AddList(new int[] { 11, 22, 33, 44, 55 }, false);
 
             //myList.InsertByIndex(10, 99);
