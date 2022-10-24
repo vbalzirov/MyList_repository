@@ -8,6 +8,7 @@
 
             var a = new int[] { 1, 2, 3, 4, 5, 6 };
 
+            //// Testing methods of MyList class
             myList.AddList(a);
 
             //myList.RemoveRange(1, 3);
