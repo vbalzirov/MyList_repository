@@ -4,24 +4,7 @@
     {
         static void Main(string[] args)
         {
-            var myList = new MyList();            
 
-            var a = new int[] { 1, 2, 3, 4, 5, 6 };
-
-            myList.AddList(a);
-
-            //myList.RemoveRange(1, 3);
-            myList.RemoveRange(new int[] { 2, 3, 1, 5 });
-            //myList.RemoveByIndex(1);
-            //myList.RemoveByIndex(1);
-            //myList.RemoveByIndex(1);
-            //myList.AddList(new int[] { 11, 22, 33, 44, 55 }, false);
-
-            //myList.InsertByIndex(10, 99);
-
-            //// See what has changed in the instance of MyClass
-            Console.WriteLine(myList.ToString());
-            //LinkedListExample.Run();
         }
     }
 
