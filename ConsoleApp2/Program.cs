@@ -11,7 +11,6 @@
             //// Testing methods of MyList class
             myList.AddList(a);
 
-            //myList.RemoveRange(1, 3);
             myList.RemoveRange(new int[] { 2, 3, 1, 5 });
             //myList.RemoveByIndex(1);
             //myList.RemoveByIndex(1);
